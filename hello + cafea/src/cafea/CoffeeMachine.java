@@ -1,27 +1,44 @@
 package cafea;
 
+import java.util.*;
+
 public class CoffeeMachine {
-    public Boolean pay(Integer banknoteNominal){
+    private Boolean pay(Integer banknoteNominal){
+        Scanner payScan = new Scanner(System.in);
+        banknoteNominal = payScan.nextInt();
         if(banknoteNominal == 5 || banknoteNominal == 10){
             return true;
         }
         return false;
     }
 
-    public String choose(Integer option){
-        if(option == 1){
+    private String choose(Integer optionCh){
+        Scanner chooseScan = new Scanner(System.in);
+        optionCh = chooseScan.nextInt();
+        if(optionCh == 1){
             return "Latte";
-        } else if(option == 2){
+        } else if(optionCh == 2){
             return "Cappuccino";
         }
         return "Incorrect option";
     }
 
-    public void showInfo(String message){
+    private String sugar(String optionSu){
+        Scanner sugarScan = new Scanner(System.in);
+        optionSu = sugarScan.nextLine();
+        if(optionSu == "y"){
+            return "With sugar";
+        } else if(optionSu == "n"){
+            return "No sugar";
+        }
+        return "Incorrect option";
+    }
+
+    private void showInfo(String message){
         System.out.println(message);
     }
 
-    public String done(String coffeeType){
+    private String done(String coffeeType){
         return coffeeType;
     }
 
@@ -29,8 +46,11 @@ public class CoffeeMachine {
         String coffeeType = "";
         this.showInfo("Please insert banknote");
         if(this.pay(5)){
-            this.showInfo("Please chose option");
-            coffeeType = this.choose(1);
+            this.showInfo("Please chose coffee type");
+            this.showInfo(
+                    "You choosed: " + coffeeType
+            );
+            this.showInfo("Please chose sugar option");
             this.showInfo(
                     "You choosed: " + coffeeType
             );
